@@ -1,0 +1,732 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"operation",
+				"operationProps"
+			],
+			[
+				"componentWill",
+				"componentWillReceiveProps	 Life Cycle"
+			],
+			[
+				"compo",
+				"componentDidMount	 Life Cycle"
+			],
+			[
+				"compon",
+				"componentWillUnmount	 Life Cycle"
+			],
+			[
+				"PropT",
+				"PropTypes.func"
+			],
+			[
+				"PropTy",
+				"PropTypes.func"
+			],
+			[
+				"next",
+				"nextLocation"
+			],
+			[
+				"ob",
+				"PropTypes.object"
+			],
+			[
+				"componentWil",
+				"componentWillReceiveProps	 Life Cycle"
+			],
+			[
+				"comp",
+				"componentWillMount	 Life Cycle"
+			],
+			[
+				"componen",
+				"componentWillMount	 Life Cycle"
+			],
+			[
+				"arra",
+				"PropTypes.arrayOf"
+			],
+			[
+				"work",
+				"workflow"
+			],
+			[
+				"workF",
+				"workflowTask"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"withT",
+				"withTagFilter"
+			],
+			[
+				"transa",
+				"transactions_list"
+			],
+			[
+				"trans",
+				"transactions_list"
+			],
+			[
+				"Upload",
+				"UploadPage"
+			],
+			[
+				"badger",
+				"badger_transactions"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"onChange",
+				"onChangeField"
+			],
+			[
+				"consoe",
+				"console.log"
+			],
+			[
+				"syn",
+				"syncMethod"
+			],
+			[
+				"Prop",
+				"PropTypes.object"
+			],
+			[
+				"Tags",
+				"TagsOverview"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"lis",
+				"list-style-type"
+			],
+			[
+				"new",
+				"newState"
+			],
+			[
+				"Bitsh",
+				"BitshiftUIState"
+			],
+			[
+				"Bits",
+				"BitshiftUIStatePreset"
+			],
+			[
+				"Bit",
+				"BitshiftUIStateParam"
+			],
+			[
+				"BUTTON",
+				"BUTTON_UP"
+			],
+			[
+				"Bi",
+				"BitshiftUIStatePreset"
+			],
+			[
+				"_param",
+				"_paramsTotal"
+			],
+			[
+				"param",
+				"paramId"
+			],
+			[
+				"float",
+				"floatValue"
+			],
+			[
+				"presets",
+				"presetsTotal"
+			],
+			[
+				"BitshiftI",
+				"BitshiftInputDefault"
+			],
+			[
+				"print",
+				"println"
+			],
+			[
+				"Bitshi",
+				"BitshiftInputDefault"
+			],
+			[
+				"beats",
+				"beatsUntilChainReset"
+			],
+			[
+				"total",
+				"totalTapValues"
+			],
+			[
+				"mil",
+				"millisUntilChainReset"
+			],
+			[
+				"reset",
+				"resetTapChain"
+			],
+			[
+				"Ard",
+				"ArduinoTapTempo"
+			],
+			[
+				"render",
+				"renderChain"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"Progr",
+				"ProgramPage"
+			],
+			[
+				"timou",
+				"timeout_ms"
+			],
+			[
+				"you",
+				"youtube"
+			],
+			[
+				"youtube",
+				"youtubeKeywords"
+			],
+			[
+				"Program",
+				"ProgramDetails"
+			],
+			[
+				"imdb",
+				"imdbRating"
+			],
+			[
+				"pop",
+				"popReady"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"loop",
+				"loop_ms"
+			],
+			[
+				"add",
+				"addProgram"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 490.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"preser",
+				"MultiEditUtils: Preserve Case"
+			],
+			[
+				"package con",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 692.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Damienn/Documents/make/arduino/Blend2"
+	],
+	"file_history":
+	[
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/.gitignore",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/library.json",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioWaveshaper/src/main.ino",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/EntityEditorHock.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/config/ReactRouter4Config.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsList.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsList.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsList.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/config/BaseConfig.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/index.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/config/ReactRouterV4Config.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/config/RouterV4Config.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsExample.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsItem.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsEditor.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsItem.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsItem.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsExample.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/ants/AntsEditor.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/index.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/CatsForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsEditor.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsExample.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/.babelrc",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/package.json",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/package.json",
+		"/C/Users/Damienn/Desktop/inspiration/hello.txt",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/src/processing_plotter/processing_plotter.pde",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/src/TeensyAudioPlotter.h",
+		"/C/Users/Damienn/Dropbox/Public/How to use the Public folder.txt",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/README.md",
+		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/src/TeensyAudioPlotter.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/audiofork/Audio/synth_waveform.h",
+		"/C/Users/Damienn/Documents/make/arduino/audiofork/Audio/effect_waveshaper.cpp",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/components/AnimalStore.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsList.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsEditor.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsItemLoader.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsItem.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsItemForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/workflow/WorkflowHock.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/prompt/PromptContainer.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/components/AppHandler.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/routes.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/bats/BatsStore.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsStore.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/README.md",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsStore.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/pages/HomePage.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/EntityEditorPropType.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sass/style.scss",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/config/EntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsItemForm.jsx",
+		"/C/Users/Damienn/Desktop/Mels foot plan",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/reducers.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsStateHock.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsRoutes.jsx",
+		"/C/Users/Damienn/Downloads/react-entity-editor.md",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/cats/CatsOverview.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsEditForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEditForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEditForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/modal/ModalContainer.jsx",
+		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Damienn/Documents/make/web/jsdonk/src/data.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/Config.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/router/EntityEditorRouteHock.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/router/EntityEditorItemRoute.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsList.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsOverview.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/Api.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEdit.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsRoutes.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsOverview.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsRoutes.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsEditForm.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsFilter.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsSync.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/api/Api.js",
+		"/C/Users/Damienn/Documents/make/money/badger/package.json",
+		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiSync.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsList.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsOverview.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsList.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/sass/style.scss",
+		"/C/Users/Damienn/Documents/make/money/badger/src/utils/Formatting.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/routes.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsCsv.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/api/ApiSync.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/components/Navigation.jsx",
+		"/C/Users/Damienn/Documents/make/money/transactions.csv",
+		"/C/Users/Damienn/Documents/make/web/dcme-api/src/CreateRequestActions.js",
+		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiMethods.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/api/CreateApiMethods.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/api/FakeApiMethods.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/components/Source.jsx",
+		"/C/Users/Damienn/AppData/Local/Temp/776ffaf1-5c30-4bf8-a249-8dc2f18a3f6c/home/dxinteractive/damienclarke.me/api/.htaccess",
+		"/C/Users/Damienn/AppData/Local/Temp/776ffaf1-5c30-4bf8-a249-8dc2f18a3f6c/home/dxinteractive/damienclarke.me/badger/.htaccess",
+		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadTransactionsEntityEditorConfig.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadTransactionsList.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadOverview.jsx",
+		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionCsv.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsOverview.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/ApiReducer.js",
+		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiReducer.js",
+		"/C/Users/Damienn/Documents/make/money/badger/src/pages/UploadPage.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/FakeApiMethods.js",
+		"/C/Users/Damienn/Documents/make/web/dcme-api/src/FakeApiMethods.js",
+		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/.gitignore",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/.gitignore",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/.editorconfig",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/index.html",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/webpack.config.js",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/index.html",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsEditForm.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsEdit.jsx",
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsOverview.jsx"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"C:\\Users\\Damienn\\Documents\\make\\web\\react-entity-editor",
+			"C:\\Users\\Damienn\\Documents\\make\\web\\react-entity-editor\\src",
+			"",
+			"C:\\Users\\Damienn\\Documents\\make\\web\\react-entity-editor\\docs\\src\\sloths",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"console",
+			"cons",
+			"handleGoEdit",
+			"handleGoNew",
+			"Button",
+			"import ButtonGoNew from '../buttons/ButtonGoNew';\n",
+			"ButtonGoEdit",
+			"ButtonDelete",
+			"rout",
+			"history",
+			"operate",
+			"isCurrentTaskBlocking",
+			"eact ro",
+			"conform to",
+			"`",
+			"})",
+			"operations",
+			"()",
+			"() =>",
+			"()",
+			" fn(this",
+			"BaseConfig",
+			"V4",
+			"this",
+			"_this",
+			"entityEditorThis",
+			"this",
+			"protectRouteChange",
+			"Router",
+			"BaseConfig",
+			"ii",
+			"config",
+			"defined",
+			"cat",
+			"Toy",
+			"toy",
+			"DogsForm",
+			"Dog",
+			"cat",
+			"Cats",
+			"AntsEditor",
+			"`}",
+			"{`",
+			"${match.path}",
+			"toy",
+			"cat",
+			"Cats",
+			"AntsEditor",
+			"AntsStore",
+			"status",
+			"CatsEntityEditorConfig",
+			"CatsEditor",
+			"Async",
+			"Dogs",
+			"onDelete",
+			"onUpdate",
+			"onCreate",
+			"dog",
+			"te:",
+			"dog",
+			"Dog",
+			"dog",
+			"Dogs",
+			"handleSave",
+			"form",
+			"handleBack",
+			"handleDirty",
+			"onChangeField",
+			"Save",
+			"onSave",
+			"ButtonDelete",
+			"handleSave",
+			"handleBack",
+			"handleChangeField",
+			"onChangeField",
+			"canSubmit",
+			"onChangeField",
+			"DogsItem",
+			"set d",
+			"func",
+			"DogsEditor",
+			"onUpdate",
+			"onCreate",
+			"DogsList",
+			"DogsEditor",
+			"dirty",
+			"additional",
+			"additionalOperationProps",
+			"operationPr",
+			"console",
+			"partiallyAppliedOperateFunction",
+			"throw",
+			"operation",
+			"operationF",
+			"taskFunction",
+			"operate",
+			"throw",
+			"';\n",
+			"continueRouteChange",
+			"actionProps",
+			"continueRouteChange",
+			"{id, view}",
+			"goOperate",
+			"workflowStart",
+			"startWorkflow",
+			"delete",
+			"save",
+			"onChangeField",
+			"delete",
+			"skip",
+			"goConfirm",
+			"handleGoEditClick",
+			"Prompt",
+			"handleClick",
+			"browser\"",
+			"waveshaper",
+			"workflow",
+			"BatsItem",
+			"BatsItemForm",
+			"BatsItem",
+			"BatsItemForm",
+			"getCurrentTask",
+			"status",
+			"nted &&",
+			"d &&",
+			"end",
+			"onOperationSuccess",
+			"promptTaskFallback"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"In each operation the first functi",
+			"sloth",
+			"Sloth",
+			"___",
+			"dogs",
+			"Dogs",
+			"filter",
+			"Filter",
+			"stan-enhance-dot",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "PlatformIO",
+	"project": "platformio.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"anima",
+				"docs\\src\\components\\AnimalStore.jsx"
+			],
+			[
+				"api",
+				"badger\\src\\api\\Api.js"
+			],
+			[
+				"uploadtra",
+				"badger\\src\\upload\\UploadTransactionsList.jsx"
+			],
+			[
+				"tagslis",
+				"badger\\src\\tags\\TagsList.jsx"
+			],
+			[
+				"input_",
+				"bitshift\\input_consts.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Damienn\\Documents\\make\\arduino\\libraries\\bitshift.sublime-project"
+			]
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 383.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
