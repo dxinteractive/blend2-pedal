@@ -247,12 +247,62 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "[05/16/17 22:48:55] Processing teensy31 (platform: teensy, lib_deps: Adafruit GFX Library@1.1.9, Adafruit SSD1306 128x64@1.1.2, board: teensy31, framework: arduino)\n\nVerbose mode can be enabled via `-v, --verbose` option\nCollected 92 compatible libraries\nLooking for dependencies...\nLibrary Dependency Graph\n|-- <Adafruit GFX Library> v1.1.9\n|-- <Adafruit SSD1306 128x64> v1.1.2\n|   |-- <Adafruit GFX Library> v1.1.9\n|   |-- <SPI> v1.0\n|   |-- <Wire> v1.0\n|-- <Wire> v1.0\nCompiling .pioenvs\\teensy31\\src\\main.o\nLinking .pioenvs\\teensy31\\firmware.elf\nBuilding .pioenvs\\teensy31\\firmware.hex\nCalculating size .pioenvs\\teensy31\\firmware.elf\ntext	   data	    bss	    dec	    hex	filename\n21788	      0	   2608	  24396	   5f4c	.pioenvs\\teensy31\\firmware.elf\n [SUCCESS] Took 1.56 seconds \n[Finished in 1.9s]",
+			"settings":
+			{
+				"buffer_size": 801,
+				"line_ending": "Windows",
+				"name": "Build output",
+				"scratch": true
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "PlatformIO",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"PlatformIO",
+					""
+				],
+				[
+					"PlatformIO",
+					"Build"
+				],
+				[
+					"PlatformIO",
+					"Clean"
+				],
+				[
+					"PlatformIO",
+					"Test"
+				],
+				[
+					"PlatformIO",
+					"Upload"
+				],
+				[
+					"PlatformIO",
+					"Upload using Programmer"
+				],
+				[
+					"PlatformIO",
+					"Upload SPIFFS image"
+				],
+				[
+					"PlatformIO",
+					"Update platforms and libraries"
+				]
+			],
+			[
+				"PlatformIO",
+				"Build"
+			]
+		]
 	],
-	"build_varint": "",
+	"build_varint": "Build",
 	"command_palette":
 	{
 		"height": 490.0,
@@ -309,7 +359,8 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Damienn/Documents/make/arduino/Blend2"
+		"/C/Users/Damienn/Documents/make/arduino/Blend2",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib"
 	],
 	"file_history":
 	[
@@ -618,8 +669,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 801,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								801,
+								801
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\Damienn\\Documents\\make\\arduino\\Blend2",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -654,6 +734,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
