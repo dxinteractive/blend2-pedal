@@ -132,18 +132,39 @@ void setup() {
   pinMode(PIN_RELAY_2, OUTPUT);
   pinMode(PIN_RELAY_3, OUTPUT);
   pinMode(PIN_RELAY_4, OUTPUT);
+  digitalWrite(PIN_RELAY_0, LOW);
+  digitalWrite(PIN_RELAY_1, LOW);
+  digitalWrite(PIN_RELAY_2, LOW);
+  digitalWrite(PIN_RELAY_3, LOW);
+  digitalWrite(PIN_RELAY_4, LOW);
 
   // vactrols
   pinMode(PIN_VACTROL_0, OUTPUT);
   pinMode(PIN_VACTROL_1, OUTPUT);
   pinMode(PIN_VACTROL_2, OUTPUT);
   pinMode(PIN_VACTROL_3, OUTPUT);
+  analogWriteFrequency(PIN_VACTROL_0, 36000);
+  analogWriteFrequency(PIN_VACTROL_1, 36000);
+  analogWriteFrequency(PIN_VACTROL_2, 36000);
+  analogWriteFrequency(PIN_VACTROL_3, 36000);
+  digitalWrite(PIN_VACTROL_0, LOW);
+  digitalWrite(PIN_VACTROL_1, LOW);
+  digitalWrite(PIN_VACTROL_2, LOW);
+  digitalWrite(PIN_VACTROL_3, LOW);
 
   // leds
-  pinMode(PIN_LED_DOWN, OUTPUT);
-  pinMode(PIN_LED_RIGHT, OUTPUT);
-  pinMode(PIN_LED_LEFT, OUTPUT);
   pinMode(PIN_LED_UP, OUTPUT);
+  pinMode(PIN_LED_DOWN, OUTPUT);
+  pinMode(PIN_LED_LEFT, OUTPUT);
+  pinMode(PIN_LED_RIGHT, OUTPUT);
+  analogWriteFrequency(PIN_LED_UP, 36000);
+  analogWriteFrequency(PIN_LED_DOWN, 36000);
+  analogWriteFrequency(PIN_LED_LEFT, 36000);
+  analogWriteFrequency(PIN_LED_RIGHT, 36000);
+  digitalWrite(PIN_LED_UP, LOW);
+  digitalWrite(PIN_LED_DOWN, LOW);
+  digitalWrite(PIN_LED_LEFT, LOW);
+  digitalWrite(PIN_LED_RIGHT, LOW);
 
   // analog
   analog0.setSnapMultiplier(0.001);
@@ -205,35 +226,54 @@ void loop() {
   analog1.update();
   analogExp.update();
 
-  Serial.println(1024 - analog0.getValue());
+  int a = 1024 - analog0.getValue();
+
+  Serial.println();
   Serial.println(analog1.getValue());
   Serial.println(analogExp.getValue());
 
   // button
   buttons.update();
   if(buttons.isPressed(BUTTON_UP)) {
-    analogWrite(PIN_LED_UP, 128);
+    digitalWrite(PIN_RELAY_0, HIGH);
+    digitalWrite(PIN_RELAY_1, HIGH);
+    digitalWrite(PIN_RELAY_2, HIGH);
+    digitalWrite(PIN_RELAY_3, HIGH);
+    digitalWrite(PIN_RELAY_4, HIGH);
   } else {
-    analogWrite(PIN_LED_UP, 0);
+    digitalWrite(PIN_RELAY_0, LOW);
+    digitalWrite(PIN_RELAY_1, LOW);
+    digitalWrite(PIN_RELAY_2, LOW);
+    digitalWrite(PIN_RELAY_3, LOW);
+    digitalWrite(PIN_RELAY_4, LOW);
   }
 
-  if(buttons.isPressed(BUTTON_DOWN)) {
-    analogWrite(PIN_LED_DOWN, 128);
-  } else {
-    analogWrite(PIN_LED_DOWN, 0);
-  }
+  analogWrite(PIN_VACTROL_0, a * 0.25);
+  analogWrite(PIN_VACTROL_1, a * 0.25);
+  analogWrite(PIN_VACTROL_2, a * 0.25);
+  analogWrite(PIN_VACTROL_3, a * 0.25);
+  analogWrite(PIN_LED_UP, a * 0.25);
+  analogWrite(PIN_LED_DOWN, a * 0.25);
+  analogWrite(PIN_LED_LEFT, a * 0.25);
+  analogWrite(PIN_LED_RIGHT, a * 0.25);
 
-  if(buttons.isPressed(BUTTON_LEFT)) {
-    analogWrite(PIN_LED_LEFT, 128);
-  } else {
-    analogWrite(PIN_LED_LEFT, 0);
-  }
+  // if(buttons.isPressed(BUTTON_DOWN)) {
+  //   analogWrite(PIN_LED_DOWN, 128);
+  // } else {
+  //   analogWrite(PIN_LED_DOWN, 0);
+  // }
 
-  if(buttons.isPressed(BUTTON_RIGHT)) {
-    analogWrite(PIN_LED_RIGHT, 128);
-  } else {
-    analogWrite(PIN_LED_RIGHT, 0);
-  }
+  // if(buttons.isPressed(BUTTON_LEFT)) {
+  //   analogWrite(PIN_LED_LEFT, 128);
+  // } else {
+  //   analogWrite(PIN_LED_LEFT, 0);
+  // }
+
+  // if(buttons.isPressed(BUTTON_RIGHT)) {
+  //   analogWrite(PIN_LED_RIGHT, 128);
+  // } else {
+  //   analogWrite(PIN_LED_RIGHT, 0);
+  // }
 
   // screen.clearDisplay();
   // screen.setTextColor(WHITE);
@@ -241,27 +281,27 @@ void loop() {
   // screen.println("...");
   // screen.display();
 
-  digitalWrite(PIN_RELAY_0, LOW);
-  digitalWrite(PIN_RELAY_1, LOW);
-  digitalWrite(PIN_RELAY_2, LOW);
-  digitalWrite(PIN_RELAY_3, LOW);
-  digitalWrite(PIN_RELAY_4, LOW);
-  analogWrite(PIN_VACTROL_0, 10);
-  analogWrite(PIN_VACTROL_1, 10);
-  analogWrite(PIN_VACTROL_2, 10);
-  analogWrite(PIN_VACTROL_3, 10);
-  analogWrite(PIN_LED_RIGHT, 0);
-  delay(1000);
+  // digitalWrite(PIN_RELAY_0, LOW);
+  // digitalWrite(PIN_RELAY_1, LOW);
+  // digitalWrite(PIN_RELAY_2, LOW);
+  // digitalWrite(PIN_RELAY_3, LOW);
+  // digitalWrite(PIN_RELAY_4, LOW);
+  // analogWrite(PIN_VACTROL_0, 10);
+  // analogWrite(PIN_VACTROL_1, 10);
+  // analogWrite(PIN_VACTROL_2, 10);
+  // analogWrite(PIN_VACTROL_3, 10);
+  // analogWrite(PIN_LED_RIGHT, 0);
+  // delay(1000);
 
-  digitalWrite(PIN_RELAY_0, HIGH);
-  digitalWrite(PIN_RELAY_1, HIGH);
-  digitalWrite(PIN_RELAY_2, HIGH);
-  digitalWrite(PIN_RELAY_3, HIGH);
-  digitalWrite(PIN_RELAY_4, HIGH);
-  analogWrite(PIN_VACTROL_0, 25);
-  analogWrite(PIN_VACTROL_1, 25);
-  analogWrite(PIN_VACTROL_2, 25);
-  analogWrite(PIN_VACTROL_3, 25);
-  analogWrite(PIN_LED_RIGHT, 128);
-  delay(1000);
+  // digitalWrite(PIN_RELAY_0, HIGH);
+  // digitalWrite(PIN_RELAY_1, HIGH);
+  // digitalWrite(PIN_RELAY_2, HIGH);
+  // digitalWrite(PIN_RELAY_3, HIGH);
+  // digitalWrite(PIN_RELAY_4, HIGH);
+  // analogWrite(PIN_VACTROL_0, 25);
+  // analogWrite(PIN_VACTROL_1, 25);
+  // analogWrite(PIN_VACTROL_2, 25);
+  // analogWrite(PIN_VACTROL_3, 25);
+  // analogWrite(PIN_LED_RIGHT, 128);
+  delay(1);
 }
