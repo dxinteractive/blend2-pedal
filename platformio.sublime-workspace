@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"Sta",
+				"Stackui"
+			],
+			[
+				"scre",
+				"screenController"
+			],
+			[
+				"Z_OPTION",
+				"Z_OPTION_TOTAL"
+			],
+			[
+				"relay",
+				"relayController"
+			],
+			[
 				"operation",
 				"operationProps"
 			],
@@ -248,10 +264,45 @@
 	"buffers":
 	[
 		{
-			"contents": "[05/16/17 22:48:55] Processing teensy31 (platform: teensy, lib_deps: Adafruit GFX Library@1.1.9, Adafruit SSD1306 128x64@1.1.2, board: teensy31, framework: arduino)\n\nVerbose mode can be enabled via `-v, --verbose` option\nCollected 92 compatible libraries\nLooking for dependencies...\nLibrary Dependency Graph\n|-- <Adafruit GFX Library> v1.1.9\n|-- <Adafruit SSD1306 128x64> v1.1.2\n|   |-- <Adafruit GFX Library> v1.1.9\n|   |-- <SPI> v1.0\n|   |-- <Wire> v1.0\n|-- <Wire> v1.0\nCompiling .pioenvs\\teensy31\\src\\main.o\nLinking .pioenvs\\teensy31\\firmware.elf\nBuilding .pioenvs\\teensy31\\firmware.hex\nCalculating size .pioenvs\\teensy31\\firmware.elf\ntext	   data	    bss	    dec	    hex	filename\n21788	      0	   2608	  24396	   5f4c	.pioenvs\\teensy31\\firmware.elf\n [SUCCESS] Took 1.56 seconds \n[Finished in 1.9s]",
+			"file": "src/uistate/StateBlendPreset.h",
 			"settings":
 			{
-				"buffer_size": 801,
+				"buffer_size": 584,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/uistate/StateBlendPreset.cpp",
+			"settings":
+			{
+				"buffer_size": 565,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "/*\n * Blend^2 guitar pedal loop blender and router.\n * Main program file\n *\n * Copyright (c) 2017 Damien Clarke\n * damienclarke.me | github.com/dxinteractive/Blend2\n *\n * |~)| _  _  _| 2\n * |_)|(/_| |(_|\n *\n*/\n\n#include <Arduino.h>\n#include <Wire.h>\n\n// ui\n#include <Stackui.h>\n#include \"ui/Model.h\"\n#include \"ui/Input.h\"\n#include \"ui/View.h\"\n#include \"uistate/StatePreset.h\"\n\n// inputs\n#include <AnalogMultiButton.h>\n#include <ResponsiveAnalogRead.h>\n\nModel model;\nInput input;\nView view;\n\nStackui ui(\n  model,\n  input,\n  view,\n  new StatePreset()\n);\n\nvoid setup() {\n  Serial.begin(9600);\n  model.setup();\n  input.setup();\n  view.setup();\n}\n\nconst int RENDER_FREQUENCY_SHIFT = 5; // 32ms\n\nunsigned long ms;\nunsigned long lastMs;\n\nvoid loop() {\n  ms = millis();\n  if(ms <= lastMs) {\n    return;\n  }\n\n  ui.update(ms);\n\n  unsigned long renderTicks = ms >> RENDER_FREQUENCY_SHIFT;\n  if(renderTicks > lastMs >> RENDER_FREQUENCY_SHIFT) {\n    switch(renderTicks % 3) {\n      case 0:\n        input.updateButtons();\n        break;\n\n      case 1:\n        input.updateAnalog0();\n        break;\n\n      case 2:\n        input.updateAnalog1();\n        break;\n    }\n\n    ui.renderFrame(ms);\n  } else {\n    input.updateAnalogExp();\n  }\n\n  lastMs = ms;\n}\n",
+			"file": "src/main.cpp",
+			"file_size": 1318,
+			"file_write_time": 131561640892320555,
+			"settings":
+			{
+				"buffer_size": 1238,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/ui/Model.h",
+			"settings":
+			{
+				"buffer_size": 822,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "[11/26/17 21:12:01] Processing teensy31 (platform: teensy, board: teensy31, framework: arduino)\n\nVerbose mode can be enabled via `-v, --verbose` option\nCollected 96 compatible libraries\nLooking for dependencies...\nLibrary Dependency Graph\n|-- <Stackui>\n|   |-- <StackArray>\n|-- <ResponsiveAnalogRead>\n|-- <Wire> v1.0\n|-- <AnalogMultiButton>\n|-- <Adafruit GFX Library> v1.1.9\n|-- <Adafruit SSD1306 128x64> v1.1.2\n|   |-- <Adafruit GFX Library> v1.1.9\n|   |-- <SPI> v1.0\n|   |-- <Wire> v1.0\nCompiling .pioenvs\\teensy31\\src\\main.o\nCompiling .pioenvs\\teensy31\\src\\ui\\View.o\nCompiling .pioenvs\\teensy31\\src\\uistate\\StatePreset.o\nLinking .pioenvs\\teensy31\\firmware.elf\nChecking program size\ntext	   data	    bss	    dec	    hex	filename\n27928	      0	   3152	  31080	   7968	.pioenvs\\teensy31\\firmware.elf\nBuilding .pioenvs\\teensy31\\firmware.hex\nUploading .pioenvs\\teensy31\\firmware.hex\nTeensy Loader, Command Line, Version 2.1\nRead \".pioenvs\\teensy31\\firmware.hex\": 27928 bytes, 10.7% usage\nSoft reboot is not implemented for Win32\nWaiting for Teensy device...\n(hint: press the reset button)\nFound HalfKay Bootloader\nRead \".pioenvs\\teensy31\\firmware.hex\": 27928 bytes, 10.7% usage\nProgramming............................hhhhhhh.......",
+			"settings":
+			{
+				"buffer_size": 1229,
 				"line_ending": "Windows",
 				"name": "Build output",
 				"scratch": true
@@ -298,11 +349,11 @@
 			],
 			[
 				"PlatformIO",
-				"Build"
+				"Upload"
 			]
 		]
 	],
-	"build_varint": "Build",
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 490.0,
@@ -360,10 +411,75 @@
 	"expanded_folders":
 	[
 		"/C/Users/Damienn/Documents/make/arduino/Blend2",
-		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib"
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/.pioenvs",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/lib",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift"
 	],
 	"file_history":
 	[
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/Stackui.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/View.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Props.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/View.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate/StatePreset.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/Stackui.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/main.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiState.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/LedController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/ScreenController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiView.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiProps.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiState.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate/StatePreset.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Model.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Model.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Input.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Input.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/bitshift.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiInput.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/ui_default.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiInput.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiModel.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/config.h",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/ui_default.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate/StateHello.h",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/uistate.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/uistate.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/ScreenController.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ButtonInput.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Blend2Input.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiRender.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ButtonInput.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/AnalogInput.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/BitshiftUI/BitshiftUI.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/AnalogInput.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ShufflerInput.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ShufflerInput.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/AmpController.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/effect_filter.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/LedController.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.h",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/audio_default.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/AmpController.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/AmpController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/VcaController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/VcaController.h",
+		"/C/Users/Damienn/Documents/make/arduino/xmas-steps/xmas.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/main.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/input_default.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/input.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/bitshift.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/platformio.ini",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/.gitignore",
 		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioPlotter/library.json",
 		"/C/Users/Damienn/Documents/make/arduino/TeensyAudioWaveshaper/src/main.ino",
@@ -437,71 +553,18 @@
 		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Damienn/Documents/make/web/jsdonk/src/data.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEntityEditorConfig.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/Config.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/router/EntityEditorRouteHock.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/router/EntityEditorItemRoute.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsList.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsOverview.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEntityEditorConfig.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/Api.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEdit.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsRoutes.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsOverview.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dogs/DogsRoutes.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsEditForm.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsFilter.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsSync.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/api/Api.js",
-		"/C/Users/Damienn/Documents/make/money/badger/package.json",
-		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiSync.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsList.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsOverview.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsList.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/sass/style.scss",
-		"/C/Users/Damienn/Documents/make/money/badger/src/utils/Formatting.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/routes.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionsCsv.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/api/ApiSync.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/components/Navigation.jsx",
-		"/C/Users/Damienn/Documents/make/money/transactions.csv",
-		"/C/Users/Damienn/Documents/make/web/dcme-api/src/CreateRequestActions.js",
-		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiMethods.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/api/CreateApiMethods.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/api/FakeApiMethods.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/components/Source.jsx",
-		"/C/Users/Damienn/AppData/Local/Temp/776ffaf1-5c30-4bf8-a249-8dc2f18a3f6c/home/dxinteractive/damienclarke.me/api/.htaccess",
-		"/C/Users/Damienn/AppData/Local/Temp/776ffaf1-5c30-4bf8-a249-8dc2f18a3f6c/home/dxinteractive/damienclarke.me/badger/.htaccess",
-		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadTransactionsEntityEditorConfig.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadTransactionsList.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/upload/UploadOverview.jsx",
-		"/C/Users/Damienn/Documents/make/money/badger/src/transactions/TransactionCsv.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/tags/TagsOverview.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/ApiReducer.js",
-		"/C/Users/Damienn/Documents/make/web/dcme-api/src/ApiReducer.js",
-		"/C/Users/Damienn/Documents/make/money/badger/src/pages/UploadPage.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/api/FakeApiMethods.js",
-		"/C/Users/Damienn/Documents/make/web/dcme-api/src/FakeApiMethods.js",
-		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/.gitignore",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/.gitignore",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/.editorconfig",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/index.html",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/webpack.config.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/index.html",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsEditForm.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsEdit.jsx",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/examples/src/dogs/DogsOverview.jsx"
+		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEntityEditorConfig.js"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
 		"height": 117.0,
 		"where_history":
 		[
+			"",
 			"C:\\Users\\Damienn\\Documents\\make\\web\\react-entity-editor",
 			"C:\\Users\\Damienn\\Documents\\make\\web\\react-entity-editor\\src",
 			"",
@@ -514,134 +577,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"console",
-			"cons",
-			"handleGoEdit",
-			"handleGoNew",
-			"Button",
-			"import ButtonGoNew from '../buttons/ButtonGoNew';\n",
-			"ButtonGoEdit",
-			"ButtonDelete",
-			"rout",
-			"history",
-			"operate",
-			"isCurrentTaskBlocking",
-			"eact ro",
-			"conform to",
-			"`",
-			"})",
-			"operations",
-			"()",
-			"() =>",
-			"()",
-			" fn(this",
-			"BaseConfig",
-			"V4",
-			"this",
-			"_this",
-			"entityEditorThis",
-			"this",
-			"protectRouteChange",
-			"Router",
-			"BaseConfig",
-			"ii",
-			"config",
-			"defined",
-			"cat",
-			"Toy",
-			"toy",
-			"DogsForm",
-			"Dog",
-			"cat",
-			"Cats",
-			"AntsEditor",
-			"`}",
-			"{`",
-			"${match.path}",
-			"toy",
-			"cat",
-			"Cats",
-			"AntsEditor",
-			"AntsStore",
-			"status",
-			"CatsEntityEditorConfig",
-			"CatsEditor",
-			"Async",
-			"Dogs",
-			"onDelete",
-			"onUpdate",
-			"onCreate",
-			"dog",
-			"te:",
-			"dog",
-			"Dog",
-			"dog",
-			"Dogs",
-			"handleSave",
-			"form",
-			"handleBack",
-			"handleDirty",
-			"onChangeField",
-			"Save",
-			"onSave",
-			"ButtonDelete",
-			"handleSave",
-			"handleBack",
-			"handleChangeField",
-			"onChangeField",
-			"canSubmit",
-			"onChangeField",
-			"DogsItem",
-			"set d",
-			"func",
-			"DogsEditor",
-			"onUpdate",
-			"onCreate",
-			"DogsList",
-			"DogsEditor",
-			"dirty",
-			"additional",
-			"additionalOperationProps",
-			"operationPr",
-			"console",
-			"partiallyAppliedOperateFunction",
-			"throw",
-			"operation",
-			"operationF",
-			"taskFunction",
-			"operate",
-			"throw",
-			"';\n",
-			"continueRouteChange",
-			"actionProps",
-			"continueRouteChange",
-			"{id, view}",
-			"goOperate",
-			"workflowStart",
-			"startWorkflow",
-			"delete",
-			"save",
-			"onChangeField",
-			"delete",
-			"skip",
-			"goConfirm",
-			"handleGoEditClick",
-			"Prompt",
-			"handleClick",
-			"browser\"",
-			"waveshaper",
-			"workflow",
-			"BatsItem",
-			"BatsItemForm",
-			"BatsItem",
-			"BatsItemForm",
-			"getCurrentTask",
-			"status",
-			"nted &&",
-			"d &&",
-			"end",
-			"onOperationSuccess",
-			"promptTaskFallback"
+			"StatePreset",
+			"STATE_PRESET_H",
+			"StatePreset",
+			"display",
+			"setCur",
+			"renderWith",
+			"StackuiView",
+			"VIEW_H",
+			"StackuiView",
+			"STACKUI_VIEW_H",
+			"pushState",
+			"StateHello",
+			"STATE_HELLO_H",
+			"StateHello",
+			"->",
+			"Stackui",
+			"StateHello",
+			"ui->onEve",
+			"vent(int type, int id, int valu",
+			"StackuiState",
+			"virtual ",
+			"event(",
+			"BUTTONEVENT",
+			"BUTTONEVENT_PRESS",
+			"StackuiState::",
+			"BitshiftUIState",
+			"BitshiftUIDefault",
+			"lowerState",
+			"BitshiftUIDefault",
+			"BitshiftUIState",
+			"Stackui",
+			"BitshiftUIState",
+			"BitshiftUIDefault",
+			"StackuiState",
+			"BitshiftUIState",
+			"BitshiftUIDefault",
+			"BitshiftUIState",
+			"initialState",
+			"View",
+			"StackuiView",
+			"VIEW_H",
+			"initialState(",
+			"RENDER_TIME",
+			"og0",
+			"eventButton",
+			"assign",
+			"Model",
+			"Input",
+			"relayController",
+			"ampController",
+			"Model",
+			"MODEL_H",
+			"Input",
+			"INPUT_H",
+			"false",
+			"BLEND2INPUT_H",
+			"Blend2Input",
+			"Blend",
+			"Blend2Model",
+			"Blend2",
+			"render",
+			"StackuiRender",
+			"STACKUI_RENDER_H",
+			"StackuiRender",
+			"BUTTONINPUT_H",
+			"BitshiftDisplaySSD1306",
+			"ButtonInput",
+			"StackuiRender",
+			"STACKUI_RENDER_H",
+			"StackuiModel",
+			"STACKUI_MODEL_H",
+			"STACKUIMODEL_H",
+			"StackuiModel",
+			"STACKUIMODEL_H",
+			"STACKUI_H",
+			"Stackui",
+			"ui",
+			"audio",
+			"RenderStack",
+			"RENDERSTACK_H",
+			"buttonInput",
+			"ANALOG_MULTI_BUTTON_H",
+			"AnalogMultiButton",
+			"Bitshift",
+			"BITSHIFT_H",
+			"ButtonInput",
+			"BUTTONINPUT_H",
+			"SHUFFLERINPUT_H",
+			"buttonsTotal",
+			"LedController",
+			"shuffler_selector_switch_1",
+			"switch_",
+			"shuffler_selector_",
+			"LedController",
+			"LEDCONTROLLER_H",
+			"LedController",
+			"screen",
+			"LedController",
+			"LEDCONTROLLER_H",
+			"LedController",
+			"gain",
+			"AmpController",
+			"gain",
+			"AMPCONTROLLER_H",
+			"AmpController",
+			"a[",
+			"RELAY",
+			"Z_OPTION_TOTAL",
+			"RELAY_",
+			"Z_OPT",
+			"Z_OPTION_LABELS",
+			"PIN_RELAY_4",
+			"PIN_RELAY_3",
+			"PIN_RELAY_2",
+			"PIN_RELAY_1",
+			"bool",
+			"presetsTotal",
+			", ",
+			"AmpController",
+			"AMPCONTROLLER_H",
+			"AmpController",
+			", ",
+			"PIN_VACTROL",
+			"PIN_VACTROL_0",
+			"LOW",
+			"digitalWrite",
+			"PIN_VACTROL_3",
+			"PIN_VACTROL_2"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -669,23 +732,161 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "src/uistate/StateBlendPreset.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 801,
+						"buffer_size": 584,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								801,
-								801
+								326,
+								326
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/uistate/StateBlendPreset.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								287,
+								287
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/ui/Model.h",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1229,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1229,
+								1229
 							]
 						],
 						"settings":
@@ -694,10 +895,10 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -720,11 +921,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.479180221211,
 			1.0
 		],
 		"rows":
