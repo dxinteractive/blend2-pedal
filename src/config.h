@@ -47,10 +47,15 @@ const int EVENT_BUTTON = 0;
 const int EVENT_ANALOG = 1;
 const int EVENT_EXP = 2;
 
-const int EVENT_BUTTON_PRESS = 0;
-const int EVENT_BUTTON_RELEASE = 1;
-const int EVENT_BUTTON_REPEAT = 2;
-const int EVENT_BUTTON_TAP = 3;
-const int EVENT_BUTTON_HOLD = 4;
+const int EVENT_BUTTON_UP = 0;
+const int EVENT_BUTTON_DOWN = 1;
+const int EVENT_BUTTON_LEFT = 2;
+const int EVENT_BUTTON_RIGHT = 3;
+
+const int EVENT_BUTTON_VALUE_PRESS = 0;
+const int EVENT_BUTTON_VALUE_RELEASE = 1;
+const int EVENT_BUTTON_VALUE_REPEAT = 2;
+const int EVENT_BUTTON_VALUE_TAP = 3;
+const int EVENT_BUTTON_VALUE_HOLD = 4;
 
 #endif

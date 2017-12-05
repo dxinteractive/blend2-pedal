@@ -24,7 +24,7 @@ class Input: public StackuiInput
     Input();
     virtual ~Input() {}
 
-    void setup();
+    virtual void setup();
     void updateButtons();
     void updateAnalog0();
     void updateAnalog1();

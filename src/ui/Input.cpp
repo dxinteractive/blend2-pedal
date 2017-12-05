@@ -10,6 +10,7 @@
 */
 
 #include "Input.h"
+#include <Stackui.h>
 #include "../config.h"
 
 Input::Input():
@@ -42,19 +43,34 @@ void Input::updateButtons()
   for(int i = 0; i < buttonsTotal; i++)
   {
     if(buttons.onPress(i))
-      event(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_PRESS);
+    {
+      StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_PRESS);
+      event(e);
+    }
 
     if(buttons.onRelease(i))
-      event(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_RELEASE);
+    {
+      StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_RELEASE);
+      event(e);
+    }
 
     if(buttons.onPressAfter(i, 500, 500))
-      event(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_REPEAT);
+    {
+      StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_REPEAT);
+      event(e);
+    }
 
     if(buttons.onReleaseBefore(i, 1000))
-      event(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_TAP);
+    {
+      StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_TAP);
+      event(e);
+    }
 
     if(buttons.onPressAfter(i, 1000))
-      event(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_HOLD);
+    {
+      StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_HOLD);
+      event(e);
+    }
   }
 }
 
