@@ -14,12 +14,22 @@
 
 #include <Stackui.h>
 
-class PropsPreset: public StackuiProps
+class PropsBlendSelector: public StackuiProps
 {
   public:
     static const int id = 0;
-    virtual int getId() { return PropsPreset::id; }
-    char const* name;
+    virtual int getId() { return PropsBlendSelector::id; }
+    char const* presetName;
+};
+
+class PropsRouteSelector: public StackuiProps
+{
+  public:
+    static const int id = 1;
+    virtual int getId() { return PropsRouteSelector::id; }
+    char const* zPositionLabel;
+    char const* dryPositionLabel;
+    char const* polarityOptionLabel;
 };
 
 #endif

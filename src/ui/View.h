@@ -40,10 +40,11 @@ class View: public StackuiView
 
     virtual ~View() {}
 
-    void setup();
+    virtual void setup();
     virtual void render(StackuiProps &props);
 
-    void render(PropsPreset &props);
+    void render(PropsBlendSelector &props);
+    void render(PropsRouteSelector &props);
 
   private:
     LedController ledController;
