@@ -38,6 +38,7 @@ class StackuiView
     virtual ~StackuiView() {}
 
     void init(Stackui* const ui) { this->ui = ui; }
+    virtual void setup() {}
     virtual void render(StackuiProps &props) = 0;
 
   private:

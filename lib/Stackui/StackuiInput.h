@@ -27,6 +27,8 @@
 #ifndef STACKUI_INPUT_H
 #define STACKUI_INPUT_H
 
+#include "StackuiEvent.h"
+
 // forward declarations
 class Stackui;
 
@@ -37,10 +39,10 @@ class StackuiInput
     virtual ~StackuiInput() {}
 
     void init(Stackui* const ui);
+    virtual void setup() {}
 
   protected:
-    void event(int type, int id, int value);
-    void event(int type, int id, float value);
+    void event(StackuiEvent &e);
 
   private:
     Stackui* ui;

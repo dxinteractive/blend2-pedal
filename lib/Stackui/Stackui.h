@@ -33,6 +33,7 @@
 #include "StackuiView.h"
 #include "StackuiProps.h"
 #include "StackuiState.h"
+#include "StackuiEvent.h"
 
 class Stackui
 {
@@ -43,20 +44,28 @@ class Stackui
       StackuiView& view,
       StackuiState* initialState
     );
+
+    Stackui(
+      StackuiModel& model,
+      StackuiInput& input,
+      StackuiView& view,
+      StackuiState** initialStates,
+      int initialStatesTotal
+    );
+
     ~Stackui();
 
-    void initialState(StackuiState* initialState);
-    void pushState(StackuiState* newState);
-    void replaceState(StackuiState* newState);
-    void popState();
+    void pushState(StackuiState* newState, bool render = true);
+    void replaceState(StackuiState* newState, bool render = true);
+    void popState(bool render = true);
 
     void setup();
     void update(unsigned long ms);
     void renderFrame(unsigned long ms);
     void renderProps(StackuiProps &props);
+    StackuiModel* getStackuiModel();
 
-    void onEvent(int type, int id, int value);
-    void onEvent(int type, int id, float value);
+    void onEvent(StackuiEvent &e);
 
   private:
     StackuiModel* model;

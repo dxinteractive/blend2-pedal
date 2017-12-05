@@ -65,3 +65,14 @@ void StackuiState::renderProps(StackuiProps &props)
 {
   ui->renderProps(props);
 }
+
+void StackuiState::passEvent(StackuiEvent &e)
+{
+  if(lowerState)
+    lowerState->onEvent(e);
+}
+
+StackuiModel* StackuiState::getStackuiModel()
+{
+  return ui->getStackuiModel();
+}

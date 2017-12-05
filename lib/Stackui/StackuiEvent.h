@@ -1,7 +1,7 @@
 /*
- * StackuiModel.h
+ * StackuiEvent.h
  * A stack-based UI state manager for Arduino
- * Base class for application model
+ * Base class for application renderer
  *
  * Copyright (c) 2017 Damien Clarke
  *
@@ -24,23 +24,26 @@
  * SOFTWARE.
  */
 
-#ifndef STACKUI_MODEL_H
-#define STACKUI_MODEL_H
+#ifndef STACKUI_EVENT_H
+#define STACKUI_EVENT_H
 
-// forward declarations
-class Stackui;
-
-class StackuiModel
+class StackuiEvent
 {
   public:
-    StackuiModel() {}
-    virtual ~StackuiModel() {}
+    StackuiEvent(int type, int id, int value):
+      type(type),
+      id(id),
+      valueInt(value) {}
 
-    void init(Stackui* const ui) { this->ui = ui; }
-    virtual void setup() {}
+    StackuiEvent(int type, int id, float value):
+      type(type),
+      id(id),
+      valueFloat(value) {}
 
-  private:
-    Stackui* ui;
+    int type;
+    int id;
+    int valueInt;
+    float valueFloat;
 };
 
 #endif

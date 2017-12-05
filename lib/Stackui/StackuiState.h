@@ -27,7 +27,9 @@
 #ifndef STACKUI_STATE_H
 #define STACKUI_STATE_H
 
+#include "StackuiModel.h"
 #include "StackuiProps.h"
+#include "StackuiEvent.h"
 
 // forward declarations
 class Stackui;
@@ -46,8 +48,7 @@ class StackuiState
     virtual void update(unsigned long ms) {}
     void updateTimeout(unsigned long ms);
 
-    virtual void onEvent(int type, int id, int value) {}
-    virtual void onEvent(int type, int id, float value) {}
+    virtual void onEvent(StackuiEvent &e) {}
     virtual void onFrame(unsigned long ms) {}
     virtual void render() {}
 
@@ -55,7 +56,10 @@ class StackuiState
     void pushState(StackuiState* newState);
     void replaceState(StackuiState* newState);
     void popState();
+
     void renderProps(StackuiProps &props);
+    void passEvent(StackuiEvent &e);
+    StackuiModel* getStackuiModel();
 
   private:
     unsigned long timeout = 0;

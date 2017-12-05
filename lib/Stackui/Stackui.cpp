@@ -25,6 +25,7 @@
 
 
 #include "Stackui.h"
+#include "StackuiEvent.h"
 #include <Arduino.h>
 
 Stackui::Stackui(
@@ -40,7 +41,25 @@ Stackui::Stackui(
   model.init(this);
   input.init(this);
   view.init(this);
-  this->initialState(initialState);
+  this->pushState(initialState, false);
+}
+
+Stackui::Stackui(
+  StackuiModel& model,
+  StackuiInput& input,
+  StackuiView& view,
+  StackuiState** initialStates,
+  int initialStatesTotal
+):
+  model(&model),
+  input(&input),
+  view(&view)
+{
+  model.init(this);
+  input.init(this);
+  view.init(this);
+  for(int i = 0; i < initialStatesTotal; i++)
+    this->pushState(initialStates[i], false);
 }
 
 Stackui::~Stackui()
@@ -56,6 +75,10 @@ Stackui::~Stackui()
 
 void Stackui::setup()
 {
+  model->setup();
+  input->setup();
+  view->setup();
+
   StackuiState* topState = stateStack.peek();
   if(topState)
     topState->render();
@@ -78,25 +101,26 @@ void Stackui::renderFrame(unsigned long ms = 0)
   topState->onFrame(ms);
 }
 
-void Stackui::initialState(StackuiState* initialState)
+void Stackui::pushState(StackuiState* newState, bool render)
 {
-  stateStack.push(initialState);
-  initialState->init(this);
-}
-
-void Stackui::pushState(StackuiState* newState)
-{
-  StackuiState* topState = stateStack.peek();
-  if(newState == topState)
-    return;
+  StackuiState* topState = NULL;
+  if(!stateStack.isEmpty()) {
+    topState = stateStack.peek();
+    if(newState == topState)
+      return;
+  }
 
   stateStack.push(newState);
   newState->init(this, topState);
-  newState->render();
+  if(render)
+    newState->render();
 }
 
-void Stackui::replaceState(StackuiState* newState)
+void Stackui::replaceState(StackuiState* newState, bool render)
 {
+  if(stateStack.isEmpty())
+    return;
+
   StackuiState* topState = stateStack.peek();
   if(newState == topState || stateStack.count() < 2)
     return;
@@ -107,10 +131,11 @@ void Stackui::replaceState(StackuiState* newState)
   topState = stateStack.peek();
   stateStack.push(newState);
   newState->init(this, topState);
-  newState->render();
+  if(render)
+    newState->render();
 }
 
-void Stackui::popState()
+void Stackui::popState(bool render)
 {
   if(stateStack.count() < 2)
     return;
@@ -118,7 +143,8 @@ void Stackui::popState()
   StackuiState* topState = stateStack.peek();
   stateStack.pop();
   delete topState;
-  stateStack.peek()->render();
+  if(render)
+    stateStack.peek()->render();
 }
 
 void Stackui::renderProps(StackuiProps &props)
@@ -126,20 +152,16 @@ void Stackui::renderProps(StackuiProps &props)
   view->render(props);
 }
 
-void Stackui::onEvent(int type, int id, int value)
+void Stackui::onEvent(StackuiEvent &e)
 {
   StackuiState* topState = stateStack.peek();
   if(!topState)
     return;
 
-  topState->onEvent(type, id, value);
+  topState->onEvent(e);
 }
 
-void Stackui::onEvent(int type, int id, float value)
+StackuiModel* Stackui::getStackuiModel()
 {
-  StackuiState* topState = stateStack.peek();
-  if(!topState)
-    return;
-
-  topState->onEvent(type, id, value);
+  return model;
 }

@@ -25,18 +25,14 @@
 
 
 #include "StackuiInput.h"
+#include "StackuiEvent.h"
 #include "Stackui.h"
 
 void StackuiInput::init(Stackui* const ui) {
   this->ui = ui;
 }
 
-void StackuiInput::event(int type, int id, int value)
+void StackuiInput::event(StackuiEvent &e)
 {
-  ui->onEvent(type, id, value);
-}
-
-void StackuiInput::event(int type, int id, float value)
-{
-  ui->onEvent(type, id, value);
+  ui->onEvent(e);
 }
