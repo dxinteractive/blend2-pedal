@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"blen",
+				"blendPosition"
+			],
+			[
+				"preset",
+				"presetId"
+			],
+			[
+				"prese",
+				"presetsTotal"
+			],
+			[
+				"pres",
+				"presetId"
+			],
+			[
+				"new",
+				"newPhaseOption"
+			],
+			[
+				"set",
+				"setPhaseOption"
+			],
+			[
 				"Sta",
 				"Stackui"
 			],
@@ -138,10 +162,6 @@
 			[
 				"lis",
 				"list-style-type"
-			],
-			[
-				"new",
-				"newState"
 			],
 			[
 				"Bitsh",
@@ -280,29 +300,50 @@
 			}
 		},
 		{
-			"contents": "/*\n * Blend^2 guitar pedal loop blender and router.\n * Main program file\n *\n * Copyright (c) 2017 Damien Clarke\n * damienclarke.me | github.com/dxinteractive/Blend2\n *\n * |~)| _  _  _| 2\n * |_)|(/_| |(_|\n *\n*/\n\n#include <Arduino.h>\n#include <Wire.h>\n\n// ui\n#include <Stackui.h>\n#include \"ui/Model.h\"\n#include \"ui/Input.h\"\n#include \"ui/View.h\"\n#include \"uistate/StatePreset.h\"\n\n// inputs\n#include <AnalogMultiButton.h>\n#include <ResponsiveAnalogRead.h>\n\nModel model;\nInput input;\nView view;\n\nStackui ui(\n  model,\n  input,\n  view,\n  new StatePreset()\n);\n\nvoid setup() {\n  Serial.begin(9600);\n  model.setup();\n  input.setup();\n  view.setup();\n}\n\nconst int RENDER_FREQUENCY_SHIFT = 5; // 32ms\n\nunsigned long ms;\nunsigned long lastMs;\n\nvoid loop() {\n  ms = millis();\n  if(ms <= lastMs) {\n    return;\n  }\n\n  ui.update(ms);\n\n  unsigned long renderTicks = ms >> RENDER_FREQUENCY_SHIFT;\n  if(renderTicks > lastMs >> RENDER_FREQUENCY_SHIFT) {\n    switch(renderTicks % 3) {\n      case 0:\n        input.updateButtons();\n        break;\n\n      case 1:\n        input.updateAnalog0();\n        break;\n\n      case 2:\n        input.updateAnalog1();\n        break;\n    }\n\n    ui.renderFrame(ms);\n  } else {\n    input.updateAnalogExp();\n  }\n\n  lastMs = ms;\n}\n",
-			"file": "src/main.cpp",
-			"file_size": 1318,
-			"file_write_time": 131561640892320555,
-			"settings":
-			{
-				"buffer_size": 1238,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/ui/Model.h",
 			"settings":
 			{
-				"buffer_size": 822,
+				"buffer_size": 1283,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "[11/26/17 21:12:01] Processing teensy31 (platform: teensy, board: teensy31, framework: arduino)\n\nVerbose mode can be enabled via `-v, --verbose` option\nCollected 96 compatible libraries\nLooking for dependencies...\nLibrary Dependency Graph\n|-- <Stackui>\n|   |-- <StackArray>\n|-- <ResponsiveAnalogRead>\n|-- <Wire> v1.0\n|-- <AnalogMultiButton>\n|-- <Adafruit GFX Library> v1.1.9\n|-- <Adafruit SSD1306 128x64> v1.1.2\n|   |-- <Adafruit GFX Library> v1.1.9\n|   |-- <SPI> v1.0\n|   |-- <Wire> v1.0\nCompiling .pioenvs\\teensy31\\src\\main.o\nCompiling .pioenvs\\teensy31\\src\\ui\\View.o\nCompiling .pioenvs\\teensy31\\src\\uistate\\StatePreset.o\nLinking .pioenvs\\teensy31\\firmware.elf\nChecking program size\ntext	   data	    bss	    dec	    hex	filename\n27928	      0	   3152	  31080	   7968	.pioenvs\\teensy31\\firmware.elf\nBuilding .pioenvs\\teensy31\\firmware.hex\nUploading .pioenvs\\teensy31\\firmware.hex\nTeensy Loader, Command Line, Version 2.1\nRead \".pioenvs\\teensy31\\firmware.hex\": 27928 bytes, 10.7% usage\nSoft reboot is not implemented for Win32\nWaiting for Teensy device...\n(hint: press the reset button)\nFound HalfKay Bootloader\nRead \".pioenvs\\teensy31\\firmware.hex\": 27928 bytes, 10.7% usage\nProgramming............................hhhhhhh.......",
+			"file": "src/ui/Model.cpp",
 			"settings":
 			{
-				"buffer_size": 1229,
+				"buffer_size": 1697,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/model/Blender.cpp",
+			"settings":
+			{
+				"buffer_size": 1528,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/model/Blender.h",
+			"settings":
+			{
+				"buffer_size": 915,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/model/Router.cpp",
+			"settings":
+			{
+				"buffer_size": 1350,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "[11/29/17 23:06:27] Processing teensy31 (platform: teensy, board: teensy31, framework: arduino)\n\nVerbose mode can be enabled via `-v, --verbose` option\nCollected 96 compatible libraries\nLooking for dependencies...\nLibrary Dependency Graph\n|-- <Stackui>\n|   |-- <StackArray>\n|-- <ResponsiveAnalogRead>\n|-- <Wire> v1.0\n|-- <AnalogMultiButton>\n|-- <Adafruit GFX Library> v1.1.9\n|-- <Adafruit SSD1306 128x64> v1.1.2\n|   |-- <Adafruit GFX Library> v1.1.9\n|   |-- <SPI> v1.0\n|   |-- <Wire> v1.0\nCompiling .pioenvs\\teensy31\\src\\main.o\nCompiling .pioenvs\\teensy31\\src\\model\\Blender.o\nCompiling .pioenvs\\teensy31\\src\\model\\Router.o\nCompiling .pioenvs\\teensy31\\src\\ui\\Model.o\nLinking .pioenvs\\teensy31\\firmware.elf\nChecking program size\ntext	   data	    bss	    dec	    hex	filename\n27936	      0	   3208	  31144	   79a8	.pioenvs\\teensy31\\firmware.elf\nBuilding .pioenvs\\teensy31\\firmware.hex\nUploading .pioenvs\\teensy31\\firmware.hex\nTeensy Loader, Command Line, Version 2.1\nRead \".pioenvs\\teensy31\\firmware.hex\": 27936 bytes, 10.7% usage\nSoft reboot is not implemented for Win32\nWaiting for Teensy device...\n(hint: press the reset button)\nFound HalfKay Bootloader\nRead \".pioenvs\\teensy31\\firmware.hex\": 27936 bytes, 10.7% usage\nProgramming............................\nBooting\n [SUCCESS] Took 10.62 seconds \n[Finished in 11.5s]",
+			"settings":
+			{
+				"buffer_size": 1316,
 				"line_ending": "Windows",
 				"name": "Build output",
 				"scratch": true
@@ -415,6 +456,7 @@
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/model",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate",
@@ -426,13 +468,18 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/model/Blender.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/model/Router.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.h",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/model/Router.cpp",
+		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/main.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/Stackui.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/View.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/Props.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/ui/View.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/uistate/StatePreset.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/Stackui.cpp",
-		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/main.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/lib/Stackui/StackuiState.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/LedController.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/ScreenController.cpp",
@@ -465,10 +512,8 @@
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ShufflerInput.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/input/ShufflerInput.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/AmpController.h",
-		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/effect_filter.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/LedController.h",
-		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/output/RelayController.h",
 		"/C/Users/Damienn/Documents/make/arduino/bitshift/src/bitshift/audio_default.cpp",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/AmpController.h",
 		"/C/Users/Damienn/Documents/make/arduino/Blend2/src/AmpController.cpp",
@@ -550,10 +595,7 @@
 		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEditForm.jsx",
 		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/sloths/SlothsEditForm.jsx",
 		"/C/Users/Damienn/Documents/make/web/react-entity-editor/src/modal/ModalContainer.jsx",
-		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Damienn/Documents/make/web/jsdonk/src/data.js",
-		"/C/Users/Damienn/Documents/make/web/react-entity-editor/docs/src/dodos/DodosEntityEditorConfig.js"
+		"/C/Users/Damienn/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
 	],
 	"find":
 	{
@@ -577,6 +619,58 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"newPresetId",
+			"presetId",
+			"Blend",
+			"relayController",
+			"Router",
+			"RelayController",
+			"Router",
+			"ROUTER_H",
+			"newDryPosition",
+			"phaseOption",
+			"dryPosition",
+			"ZPosi",
+			"ZPositio",
+			"RelayController",
+			"RELAYCONTROLLER_H",
+			"output",
+			"ampController",
+			"AmpController",
+			"RelayController",
+			"relayController",
+			"ase",
+			"getDryPositionLabel",
+			"Z_OPTIO",
+			"Z_OPTION_DRY",
+			"pinDry",
+			") {",
+			"dryPosition",
+			"zPosition",
+			"phaseOption",
+			"dryPosition",
+			"zPosition",
+			"dryPositionOption",
+			"zPositionOption",
+			"dryPosition",
+			"hase",
+			"DRYPOSITION",
+			"OPTION",
+			"dryPositionOption",
+			"  int ",
+			"pinDryZ",
+			"pinDryAfter",
+			"ion(",
+			"on",
+			"void",
+			"Preset",
+			"reset",
+			"Param",
+			"keyframeId",
+			"keyframe",
+			"blendId",
+			"paramId",
+			"setActivePreset",
 			"StatePreset",
 			"STATE_PRESET_H",
 			"StatePreset",
@@ -652,59 +746,7 @@
 			"StackuiModel",
 			"STACKUIMODEL_H",
 			"STACKUI_H",
-			"Stackui",
-			"ui",
-			"audio",
-			"RenderStack",
-			"RENDERSTACK_H",
-			"buttonInput",
-			"ANALOG_MULTI_BUTTON_H",
-			"AnalogMultiButton",
-			"Bitshift",
-			"BITSHIFT_H",
-			"ButtonInput",
-			"BUTTONINPUT_H",
-			"SHUFFLERINPUT_H",
-			"buttonsTotal",
-			"LedController",
-			"shuffler_selector_switch_1",
-			"switch_",
-			"shuffler_selector_",
-			"LedController",
-			"LEDCONTROLLER_H",
-			"LedController",
-			"screen",
-			"LedController",
-			"LEDCONTROLLER_H",
-			"LedController",
-			"gain",
-			"AmpController",
-			"gain",
-			"AMPCONTROLLER_H",
-			"AmpController",
-			"a[",
-			"RELAY",
-			"Z_OPTION_TOTAL",
-			"RELAY_",
-			"Z_OPT",
-			"Z_OPTION_LABELS",
-			"PIN_RELAY_4",
-			"PIN_RELAY_3",
-			"PIN_RELAY_2",
-			"PIN_RELAY_1",
-			"bool",
-			"presetsTotal",
-			", ",
-			"AmpController",
-			"AMPCONTROLLER_H",
-			"AmpController",
-			", ",
-			"PIN_VACTROL",
-			"PIN_VACTROL_0",
-			"LOW",
-			"digitalWrite",
-			"PIN_VACTROL_3",
-			"PIN_VACTROL_2"
+			"Stackui"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -732,7 +774,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -765,7 +807,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -781,8 +823,8 @@
 						"selection":
 						[
 							[
-								287,
-								287
+								565,
+								565
 							]
 						],
 						"settings":
@@ -803,19 +845,119 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/main.cpp",
+					"file": "src/ui/Model.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1238,
+						"buffer_size": 1283,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								833,
+								571
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/ui/Model.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1697,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1225,
+								1225
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/model/Blender.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1528,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1528,
+								1528
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"open_with_edit": true,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1026.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/model/Blender.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								642,
+								658
 							]
 						],
 						"settings":
@@ -835,20 +977,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "src/ui/Model.h",
-					"semi_transient": true,
+					"buffer": 6,
+					"file": "src/model/Router.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 822,
+						"buffer_size": 1350,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								281,
+								281
 							]
 						],
 						"settings":
@@ -860,11 +1002,11 @@
 							"translate_tabs_to_spaces": true,
 							"trim_trailing_white_space_on_save": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
+						"translation.x": -0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -874,19 +1016,19 @@
 			"sheets":
 			[
 				{
-					"buffer": 4,
+					"buffer": 7,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1229,
+						"buffer_size": 1316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1229,
-								1229
+								1316,
+								1316
 							]
 						],
 						"settings":
@@ -895,10 +1037,10 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -932,7 +1074,7 @@
 		"cols":
 		[
 			0.0,
-			0.479180221211,
+			0.548145738452,
 			1.0
 		],
 		"rows":
