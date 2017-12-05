@@ -11,10 +11,10 @@ class Router
     static char const* getZPositionLabel(int zPosition)
     {
       static char const* arr[] = {
-        "None",
-        "Dry",
-        "Wet",
-        "DMM"
+        "Z:None",
+        "Z:Dry",
+        "Z:Wet",
+        "Z:DMM"
       };
       return arr[zPosition];
     }
@@ -22,19 +22,19 @@ class Router
     static char const* getDryPositionLabel(int dryPosition)
     {
       static char const* arr[] = {
-        "Branched",
+        "Split",
         "Linear"
       };
       return arr[dryPosition];
     }
 
-    static char const* getPhaseOptionLabel(int phaseOption)
+    static char const* getPolarityOptionLabel(int polarityOption)
     {
       static char const* arr[] = {
-        "Phase Normal",
-        "Phase Inverted"
+        "P:+1",
+        "P:-1"
       };
-      return arr[phaseOption];
+      return arr[polarityOption];
     }
 
   	Router():
@@ -48,21 +48,27 @@ class Router
 
     void setup();
 
+    int getZPosition() const { return zPosition; }
+    char const* getZPositionLabel() const;
     int setZPosition(int newZPosition);
     int nextZPosition();
 
+    int getDryPosition() const { return dryPosition; }
+    char const* getDryPositionLabel() const;
     int setDryPosition(int newDryPosition);
     int nextDryPosition();
 
-    int setPhaseOption(int newPhaseOption);
-    int nextPhaseOption();
+    int getPolarityOption() const { return polarityOption; }
+    char const* getPolarityOptionLabel() const;
+    int setPolarityOption(int newPolarityOption);
+    int nextPolarityOption();
 
   private:
     RelayController relayController;
 
     int zPosition;
     int dryPosition;
-    int phaseOption;
+    int polarityOption;
 };
 
 #endif

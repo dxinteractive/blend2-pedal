@@ -21,6 +21,7 @@ class Blender
 
     void setup();
 
+    int getPreset() const { return presetId; }
     int setPreset(int newPresetId);
     int nextPreset();
     int prevPreset();

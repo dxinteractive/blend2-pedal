@@ -7,12 +7,12 @@ void RelayController::setup()
   pinMode(pinDryZ, OUTPUT);
   pinMode(pinWetZ, OUTPUT);
   pinMode(pinDmmZ, OUTPUT);
-  pinMode(pinPhaseFlip, OUTPUT);
+  pinMode(pinPolarityFlip, OUTPUT);
   digitalWrite(pinDryAfter, LOW);
   digitalWrite(pinDryZ, LOW);
   digitalWrite(pinWetZ, LOW);
   digitalWrite(pinDmmZ, LOW);
-  digitalWrite(pinPhaseFlip, LOW);
+  digitalWrite(pinPolarityFlip, LOW);
 }
 
 void RelayController::setZPosition(int newZPosition)
@@ -28,7 +28,7 @@ void RelayController::setZPosition(int newZPosition)
       break;
 
     case RelayController::Z_POSITION_WET:
-      digitalWrite(pinDryZ, HIGH);
+      digitalWrite(pinWetZ, HIGH);
       break;
 
     case RelayController::Z_POSITION_DMM:
@@ -42,7 +42,7 @@ void RelayController::setDryPosition(int newDryPosition)
   digitalWrite(pinDryAfter, newDryPosition ? HIGH : LOW);
 }
 
-void RelayController::setPhaseOption(int newPhaseOption)
+void RelayController::setPolarityOption(int newPolarityOption)
 {
-  digitalWrite(pinDryAfter, newPhaseOption ? HIGH : LOW);
+  digitalWrite(pinDryAfter, newPolarityOption ? HIGH : LOW);
 }

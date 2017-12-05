@@ -1,4 +1,5 @@
 #include "Router.h"
+#include <Arduino.h>
 
 void Router::setup()
 {
@@ -13,6 +14,11 @@ int Router::setZPosition(int newZPosition)
     relayController.setZPosition(newZPosition);
   }
   return zPosition;
+}
+
+char const* Router::getZPositionLabel() const
+{
+  return Router::getZPositionLabel(zPosition);
 }
 
 int Router::nextZPosition()
@@ -34,6 +40,11 @@ int Router::setDryPosition(int newDryPosition)
   return dryPosition;
 }
 
+char const* Router::getDryPositionLabel() const
+{
+  return Router::getDryPositionLabel(dryPosition);
+}
+
 int Router::nextDryPosition()
 {
   int newDryPosition = (dryPosition < RelayController::DRY_POSITIONS_TOTAL - 1)
@@ -43,21 +54,26 @@ int Router::nextDryPosition()
   return setDryPosition(newDryPosition);
 }
 
-int Router::setPhaseOption(int newPhaseOption)
+int Router::setPolarityOption(int newPolarityOption)
 {
-  if(newPhaseOption >= 0 && newPhaseOption < RelayController::PHASE_OPTIONS_TOTAL)
+  if(newPolarityOption >= 0 && newPolarityOption < RelayController::POLARITY_OPTIONS_TOTAL)
   {
-    phaseOption = newPhaseOption;
-    relayController.setPhaseOption(phaseOption);
+    polarityOption = newPolarityOption;
+    relayController.setPolarityOption(polarityOption);
   }
-  return phaseOption;
+  return polarityOption;
 }
 
-int Router::nextPhaseOption()
+char const* Router::getPolarityOptionLabel() const
 {
-  int newPhaseOption = (phaseOption < RelayController::PHASE_OPTIONS_TOTAL - 1)
-    ? phaseOption + 1
+  return Router::getPolarityOptionLabel(polarityOption);
+}
+
+int Router::nextPolarityOption()
+{
+  int newPolarityOption = (polarityOption < RelayController::POLARITY_OPTIONS_TOTAL - 1)
+    ? polarityOption + 1
     : 0;
 
-  return setPhaseOption(newPhaseOption);
+  return setPolarityOption(newPolarityOption);
 }
