@@ -18,7 +18,8 @@
 #include "ui/Model.h"
 #include "ui/Input.h"
 #include "ui/View.h"
-#include "uistate/StateBlendPreset.h"
+#include "uistate/StateBase.h"
+#include "uistate/StateBlendSelector.h"
 
 // inputs
 #include <AnalogMultiButton.h>
@@ -28,18 +29,25 @@ Model model;
 Input input;
 View view;
 
+// initial states
+const int INITIAL_STATES_TOTAL = 2;
+StackuiState* initialStates[INITIAL_STATES_TOTAL] = {
+  new StateBase(),
+  new StateBlendSelector()
+};
+
+
 Stackui ui(
   model,
   input,
   view,
-  new StateBlendPreset()
+  initialStates,
+  INITIAL_STATES_TOTAL
 );
 
 void setup() {
   Serial.begin(9600);
-  model.setup();
-  input.setup();
-  view.setup();
+  ui.setup();
 }
 
 const int RENDER_FREQUENCY_SHIFT = 5; // 32ms
