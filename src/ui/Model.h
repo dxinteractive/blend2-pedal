@@ -25,8 +25,9 @@ class Model: public StackuiModel
 
     virtual ~Model() {}
 
-    void setup();
+    virtual void setup();
 
+    int getBlendPreset() const;
     int setBlendPreset(int presetId);
     int nextBlendPreset();
     int prevBlendPreset();
@@ -38,17 +39,23 @@ class Model: public StackuiModel
     float getBlendedValue(int ampId) const;
     float getBlendedValue(int ampId, float blend) const;
 
+    int getZPosition() const;
     int setZPosition(int newZPosition);
     int nextZPosition();
+    char const* getZPositionLabel() const;
     char const* getZPositionLabel(int zPosition) const;
 
+    int getDryPosition() const;
     int setDryPosition(int newDryPosition);
     int nextDryPosition();
+    char const* getDryPositionLabel() const;
     char const* getDryPositionLabel(int dryPosition) const;
 
-    int setPhaseOption(int newPhaseOption);
-    int nextPhaseOption();
-    char const* getPhaseOptionLabel(int phaseOption) const;
+    int getPolarityOption() const;
+    int setPolarityOption(int newPolarityOption);
+    int nextPolarityOption();
+    char const* getPolarityOptionLabel() const;
+    char const* getPolarityOptionLabel(int polarityOption) const;
 
   private:
     Blender blender;

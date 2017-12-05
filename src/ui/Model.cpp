@@ -17,49 +17,59 @@ void Model::setup()
   router.setup();
 }
 
+int Model::getBlendPreset() const
+{
+  return blender.getPreset();
+}
+
 int Model::setBlendPreset(int presetId)
 {
-  return 123;
+  return blender.setPreset(presetId);
 }
 
 int Model::nextBlendPreset()
 {
-  return 123;
+  return blender.nextPreset();
 }
 
 int Model::prevBlendPreset()
 {
-  return 123;
+  return blender.prevPreset();
 }
 
 char const* Model::blendPresetName() const
 {
-  return "???";
+  return blender.presetName();
 }
 
 float Model::getBlendKeyframe(int ampId, int keyframe) const
 {
-  return 0.5;
+  return blender.getKeyframe(ampId, keyframe);
 }
 
 float Model::setBlendKeyframe(int ampId, int keyframe, float value)
 {
-  return 0.5;
+  return blender.setKeyframe(ampId, keyframe, value);
 }
 
 float Model::setBlendPosition(float blend)
 {
-  return 0.5;
+  return blender.setPosition(blend);
 }
 
 float Model::getBlendedValue(int ampId) const
 {
-  return 0.5;
+  return blender.getBlendedValue(ampId);
 }
 
 float Model::getBlendedValue(int ampId, float blend) const
 {
-  return 0.5;
+  return blender.getBlendedValue(ampId, blend);
+}
+
+int Model::getZPosition() const
+{
+  return router.getZPosition();
 }
 
 int Model::setZPosition(int newZPosition)
@@ -72,9 +82,19 @@ int Model::nextZPosition()
   return router.nextZPosition();
 }
 
+char const* Model::getZPositionLabel() const
+{
+  return router.getZPositionLabel();
+}
+
 char const* Model::getZPositionLabel(int zPosition) const
 {
   return router.getZPositionLabel(zPosition);
+}
+
+int Model::getDryPosition() const
+{
+  return router.getDryPosition();
 }
 
 int Model::setDryPosition(int newDryPosition)
@@ -87,22 +107,37 @@ int Model::nextDryPosition()
   return router.nextDryPosition();
 }
 
+char const* Model::getDryPositionLabel() const
+{
+  return router.getDryPositionLabel();
+}
+
 char const* Model::getDryPositionLabel(int dryPosition) const
 {
   return router.getDryPositionLabel(dryPosition);
 }
 
-int Model::setPhaseOption(int newPhaseOption)
+int Model::getPolarityOption() const
 {
-  return router.setPhaseOption(newPhaseOption);
+  return router.getPolarityOption();
 }
 
-int Model::nextPhaseOption()
+int Model::setPolarityOption(int newPolarityOption)
 {
-  return router.nextPhaseOption();
+  return router.setPolarityOption(newPolarityOption);
 }
 
-char const* Model::getPhaseOptionLabel(int phaseOption) const
+int Model::nextPolarityOption()
 {
-  return router.getPhaseOptionLabel(phaseOption);
+  return router.nextPolarityOption();
+}
+
+char const* Model::getPolarityOptionLabel() const
+{
+  return router.getPolarityOptionLabel();
+}
+
+char const* Model::getPolarityOptionLabel(int polarityOption) const
+{
+  return router.getPolarityOptionLabel(polarityOption);
 }
