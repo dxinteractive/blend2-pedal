@@ -15,13 +15,17 @@
 #include <Stackui.h>
 
 #include "../model/Blender.h"
+#include "../model/BlendPreset.h"
 #include "../model/Router.h"
+#include "../model/Shuffler.h"
+#include "../model/ShufflerData.h"
 
 class Model: public StackuiModel
 {
   public:
-    Model():
-      StackuiModel() {}
+    Model(const BlendPreset* blendPresets, int blendPresetsTotal):
+      StackuiModel(),
+      blender(blendPresets, blendPresetsTotal) {}
 
     virtual ~Model() {}
 
@@ -34,6 +38,7 @@ class Model: public StackuiModel
     char const* blendPresetName() const;
 
     float getBlendKeyframe(int ampId, int keyframe) const;
+    float const* getBlendKeyframes() const;
     float setBlendKeyframe(int ampId, int keyframe, float value);
     float setBlendPosition(float blend);
     float getBlendedValue(int ampId) const;
@@ -57,9 +62,13 @@ class Model: public StackuiModel
     char const* getPolarityOptionLabel() const;
     char const* getPolarityOptionLabel(int polarityOption) const;
 
+    ShufflerData const* getShufflerData() const;
+    void updateShuffler();
+
   private:
     Blender blender;
     Router router;
+    Shuffler shuffler;
 };
 
 #endif

@@ -30,7 +30,7 @@
 class StackuiEvent
 {
   public:
-    StackuiEvent(int type, int id, int value):
+    StackuiEvent(int type, int id, int value = 0):
       type(type),
       id(id),
       valueInt(value) {}

@@ -44,5 +44,5 @@ void RelayController::setDryPosition(int newDryPosition)
 
 void RelayController::setPolarityOption(int newPolarityOption)
 {
-  digitalWrite(pinDryAfter, newPolarityOption ? HIGH : LOW);
+  digitalWrite(pinPolarityFlip, newPolarityOption ? HIGH : LOW);
 }

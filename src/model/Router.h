@@ -13,7 +13,7 @@ class Router
       static char const* arr[] = {
         "Z:None",
         "Z:Dry",
-        "Z:Wet",
+        "Z:After",
         "Z:DMM"
       };
       return arr[zPosition];

@@ -16,8 +16,6 @@
 #include <AnalogMultiButton.h>
 #include <ResponsiveAnalogRead.h>
 
-#include "input/ShufflerInput.h"
-
 class Input: public StackuiInput
 {
   public:
@@ -37,7 +35,6 @@ class Input: public StackuiInput
     AnalogMultiButton buttons;
     int buttonsTotal;
     int buttonsAssign[AnalogMultiButton::MAX_BUTTONS];
-    ShufflerInput shufflerInput;
 };
 
 #endif

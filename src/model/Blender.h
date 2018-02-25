@@ -2,41 +2,39 @@
 #define BLENDER_H
 
 #include <Arduino.h>
+#include "BlendPreset.h"
 #include "../output/AmpController.h"
 #include "../config.h"
 
 class Blender
 {
   public:
-    static const int AMPS_TOTAL = 4;
-    static const int KEYFRAMES_TOTAL = 2;
-
-  	Blender():
-      ampController(
-        PIN_VACTROL_0,
-        PIN_VACTROL_1,
-        PIN_VACTROL_2,
-        PIN_VACTROL_3
-      ) {}
+  	Blender(const BlendPreset* presets, int presetsTotal);
 
     void setup();
 
     int getPreset() const { return presetId; }
+    int getPresetsTotal() const { return presetsTotal; }
     int setPreset(int newPresetId);
     int nextPreset();
     int prevPreset();
     char const* presetName() const;
+    char const* presetName(int presetId) const;
 
     float getKeyframe(int ampId, int keyframe) const;
+    float const* getKeyframes() const;
     float setKeyframe(int ampId, int keyframe, float value);
     float setPosition(float newBlendPosition);
     float getBlendedValue(int ampId) const;
     float getBlendedValue(int ampId, float blend) const;
 
   private:
+    void updateAmpController();
+
     AmpController ampController;
-    int presetId;
+    const BlendPreset* presets;
     int presetsTotal;
+    int presetId;
     float ampKeyframeValues[8];
     float blendPosition;
 };

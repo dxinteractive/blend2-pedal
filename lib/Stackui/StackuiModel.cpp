@@ -1,7 +1,6 @@
 /*
- * StackuiModel.h
+ * StackuiModel.cpp
  * A stack-based UI state manager for Arduino
- * Base class for application model
  *
  * Copyright (c) 2017 Damien Clarke
  *
@@ -24,28 +23,16 @@
  * SOFTWARE.
  */
 
-#ifndef STACKUI_MODEL_H
-#define STACKUI_MODEL_H
 
+#include "StackuiModel.h"
 #include "StackuiEvent.h"
+#include "Stackui.h"
 
-// forward declarations
-class Stackui;
+void StackuiModel::init(Stackui* const ui) {
+  this->ui = ui;
+}
 
-class StackuiModel
+void StackuiModel::event(StackuiEvent &e)
 {
-  public:
-    StackuiModel() {}
-    virtual ~StackuiModel() {}
-
-    void init(Stackui* const ui);
-    virtual void setup() {}
-
-  protected:
-    void event(StackuiEvent &e);
-
-  private:
-    Stackui* ui;
-};
-
-#endif
+  ui->onEvent(e);
+}

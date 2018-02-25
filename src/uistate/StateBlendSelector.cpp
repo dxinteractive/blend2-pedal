@@ -17,11 +17,16 @@
 #include "../ui/Props.h"
 #include "../config.h"
 
-void StateBlendSelector::render()
+void StateBlendSelector::render(bool top)
 {
-  PropsBlendSelector props = PropsBlendSelector();
-  props.presetName = getModel()->blendPresetName();
-  renderProps(props);
+  passRender();
+  if(top)
+  {
+    PropsBlendSelector props = PropsBlendSelector();
+    props.presetName = getModel()->blendPresetName();
+    props.ampKeyframeValues = getModel()->getBlendKeyframes();
+    renderProps(props);
+  }
 }
 
 void StateBlendSelector::onEvent(StackuiEvent &e)
@@ -34,8 +39,23 @@ void StateBlendSelector::onEvent(StackuiEvent &e)
       replaceState(newState);
       return;
     }
+    if(e.id == EVENT_BUTTON_LEFT &&
+      (e.valueInt == EVENT_BUTTON_VALUE_PRESS || e.valueInt == EVENT_BUTTON_VALUE_REPEAT)
+    )
+    {
+      getModel()->prevBlendPreset();
+      render(true);
+      return;
+    }
+    if(e.id == EVENT_BUTTON_RIGHT &&
+      (e.valueInt == EVENT_BUTTON_VALUE_PRESS || e.valueInt == EVENT_BUTTON_VALUE_REPEAT)
+    )
+    {
+      getModel()->nextBlendPreset();
+      render(true);
+      return;
+    }
     return;
   }
-
   passEvent(e);
 }

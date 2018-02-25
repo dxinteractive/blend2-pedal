@@ -72,6 +72,12 @@ void StackuiState::passEvent(StackuiEvent &e)
     lowerState->onEvent(e);
 }
 
+void StackuiState::passRender()
+{
+  if(lowerState)
+    lowerState->render();
+}
+
 StackuiModel* StackuiState::getStackuiModel()
 {
   return ui->getStackuiModel();

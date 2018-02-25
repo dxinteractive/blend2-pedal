@@ -15,6 +15,7 @@ void Model::setup()
 {
   blender.setup();
   router.setup();
+  shuffler.setup();
 }
 
 int Model::getBlendPreset() const
@@ -45,6 +46,11 @@ char const* Model::blendPresetName() const
 float Model::getBlendKeyframe(int ampId, int keyframe) const
 {
   return blender.getKeyframe(ampId, keyframe);
+}
+
+float const* Model::getBlendKeyframes() const
+{
+  return blender.getKeyframes();
 }
 
 float Model::setBlendKeyframe(int ampId, int keyframe, float value)
@@ -140,4 +146,18 @@ char const* Model::getPolarityOptionLabel() const
 char const* Model::getPolarityOptionLabel(int polarityOption) const
 {
   return router.getPolarityOptionLabel(polarityOption);
+}
+
+ShufflerData const* Model::getShufflerData() const
+{
+  return shuffler.getData();
+}
+
+void Model::updateShuffler()
+{
+  shuffler.update();
+  if(shuffler.hasChanged()) {
+    StackuiEvent e(EVENT_SHUFFLER, EVENT_SHUFFLER_CHANGED);
+    event(e);
+  }
 }

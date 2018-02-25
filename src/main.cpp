@@ -18,14 +18,26 @@
 #include "ui/Model.h"
 #include "ui/Input.h"
 #include "ui/View.h"
+#include "model/BlendPreset.h"
 #include "uistate/StateBase.h"
-#include "uistate/StateBlendSelector.h"
+#include "uistate/StateRouteSelector.h"
 
 // inputs
 #include <AnalogMultiButton.h>
 #include <ResponsiveAnalogRead.h>
 
-Model model;
+static const int BLEND_PRESETS_TOTAL = 7;
+static const BlendPreset BLEND_PRESETS[BLEND_PRESETS_TOTAL] = {
+  {"Wet", {0, 0, 1, 1, 0, 0, 1, 1}},
+  {"Dry", {1, 1, 0, 0, 1, 1, 0, 0}},
+  {"Wet send", {1, 1, 0, 1, 1, 1, 1, 1}},
+  {"Pan send", {1, 0, 0, 1, 1, 1, 1, 1}},
+  {"Pan return", {1, 1, 1, 1, 1, 0, 0, 1}},
+  {"Swell send", {0, 0, 0, 1, 0, 0, 1, 1}},
+  {"Swell return", {0, 0, 1, 1, 0, 0, 0, 1}}
+};
+
+Model model(BLEND_PRESETS, BLEND_PRESETS_TOTAL);
 Input input;
 View view;
 
@@ -33,7 +45,7 @@ View view;
 const int INITIAL_STATES_TOTAL = 2;
 StackuiState* initialStates[INITIAL_STATES_TOTAL] = {
   new StateBase(),
-  new StateBlendSelector()
+  new StateRouteSelector()
 };
 
 
@@ -50,7 +62,7 @@ void setup() {
   ui.setup();
 }
 
-const int RENDER_FREQUENCY_SHIFT = 5; // 32ms
+const int RENDER_FREQUENCY_SHIFT = 3; // 8ms
 
 unsigned long ms;
 unsigned long lastMs;
@@ -65,7 +77,7 @@ void loop() {
 
   unsigned long renderTicks = ms >> RENDER_FREQUENCY_SHIFT;
   if(renderTicks > lastMs >> RENDER_FREQUENCY_SHIFT) {
-    switch(renderTicks % 3) {
+    switch(renderTicks % 4) {
       case 0:
         input.updateButtons();
         break;
@@ -76,6 +88,10 @@ void loop() {
 
       case 2:
         input.updateAnalog1();
+        break;
+
+      case 3:
+        model.updateShuffler();
         break;
     }
 

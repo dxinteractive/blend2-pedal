@@ -88,8 +88,10 @@ void Stackui::update(unsigned long ms)
 {
   StackuiState* topState = stateStack.peek();
   if(topState)
+  {
     topState->updateTimeout(ms);
     topState->update(ms);
+  }
 }
 
 void Stackui::renderFrame(unsigned long ms = 0)
@@ -104,7 +106,8 @@ void Stackui::renderFrame(unsigned long ms = 0)
 void Stackui::pushState(StackuiState* newState, bool render)
 {
   StackuiState* topState = NULL;
-  if(!stateStack.isEmpty()) {
+  if(!stateStack.isEmpty())
+  {
     topState = stateStack.peek();
     if(newState == topState)
       return;

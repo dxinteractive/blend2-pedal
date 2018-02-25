@@ -17,13 +17,20 @@
 #include "../ui/Props.h"
 #include "../config.h"
 
-void StateRouteSelector::render()
+void StateRouteSelector::render(bool top)
 {
-  PropsRouteSelector props = PropsRouteSelector();
-  props.zPositionLabel = getModel()->getZPositionLabel();
-  props.dryPositionLabel = getModel()->getDryPositionLabel();
-  props.polarityOptionLabel = getModel()->getPolarityOptionLabel();
-  renderProps(props);
+  passRender();
+  if(top)
+  {
+    PropsRouteSelector props = PropsRouteSelector();
+    props.zPosition = getModel()->getZPosition();
+    props.dryPosition = getModel()->getDryPosition();
+    props.zPositionLabel = getModel()->getZPositionLabel();
+    props.dryPositionLabel = getModel()->getDryPositionLabel();
+    props.polarityOptionLabel = getModel()->getPolarityOptionLabel();
+    props.shufflerData = getModel()->getShufflerData();
+    renderProps(props);
+  }
 }
 
 void StateRouteSelector::onEvent(StackuiEvent &e)
@@ -39,21 +46,27 @@ void StateRouteSelector::onEvent(StackuiEvent &e)
     if(e.id == EVENT_BUTTON_LEFT && e.valueInt == EVENT_BUTTON_VALUE_PRESS)
     {
       getModel()->nextZPosition();
-      render();
+      render(true);
       return;
     }
     if(e.id == EVENT_BUTTON_DOWN && e.valueInt == EVENT_BUTTON_VALUE_PRESS)
     {
       getModel()->nextPolarityOption();
-      render();
+      render(true);
       return;
     }
     if(e.id == EVENT_BUTTON_RIGHT && e.valueInt == EVENT_BUTTON_VALUE_PRESS)
     {
       getModel()->nextDryPosition();
-      render();
+      render(true);
       return;
     }
+    return;
+  }
+
+  if(e.type == EVENT_SHUFFLER)
+  {
+    render(true);
     return;
   }
 

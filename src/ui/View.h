@@ -45,10 +45,15 @@ class View: public StackuiView
 
     void render(PropsBlendSelector &props);
     void render(PropsRouteSelector &props);
+    void render(PropsBlendLeds &props);
 
   private:
     LedController ledController;
     Adafruit_SSD1306 screen;
+
+    void renderGraphic(int x, int y, PropsBlendGraph &props);
+    void renderGraphic(int x, int y, PropsRouteSelector &props);
+    void renderGraphic(int x, int y, PropsRouteLetter &props);
 };
 
 #endif

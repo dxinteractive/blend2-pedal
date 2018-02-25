@@ -34,7 +34,6 @@ void Input::setup()
   analog0.setSnapMultiplier(0.001);
   analog1.setSnapMultiplier(0.001);
   analogExp.setSnapMultiplier(0.001);
-  shufflerInput.setup();
 }
 
 void Input::updateButtons()
@@ -54,7 +53,7 @@ void Input::updateButtons()
       event(e);
     }
 
-    if(buttons.onPressAfter(i, 500, 500))
+    if(buttons.onPressAfter(i, 500, 250))
     {
       StackuiEvent e(EVENT_BUTTON, buttonsAssign[i], EVENT_BUTTON_VALUE_REPEAT);
       event(e);
@@ -77,14 +76,32 @@ void Input::updateButtons()
 void Input::updateAnalog0()
 {
   analog0.update();
+  if(analog0.hasChanged())
+  {
+    float value = analog0.getSmoothValue() / 1023.0;
+    StackuiEvent e(EVENT_ANALOG, EVENT_ANALOG_0, 1.0 - value);
+    event(e);
+  }
 }
 
 void Input::updateAnalog1()
 {
   analog1.update();
+  if(analog1.hasChanged())
+  {
+    float value = analog1.getSmoothValue() / 1023.0;
+    StackuiEvent e(EVENT_ANALOG, EVENT_ANALOG_1, value);
+    event(e);
+  }
 }
 
 void Input::updateAnalogExp()
 {
   analogExp.update();
+  if(analogExp.hasChanged())
+  {
+    float value = analogExp.getSmoothValue() / 1023.0;
+    StackuiEvent e(EVENT_EXP, EVENT_EXP_0, value);
+    event(e);
+  }
 }

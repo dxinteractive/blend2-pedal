@@ -23,7 +23,7 @@ class StateRouteSelector: public State
 
     ~StateRouteSelector() {}
 
-    virtual void render();
+    virtual void render(bool top);
     virtual void onEvent(StackuiEvent &e);
 };
 

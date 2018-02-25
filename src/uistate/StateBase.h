@@ -23,7 +23,7 @@ class StateBase: public State
 
     ~StateBase() {}
 
-    virtual void render();
+    virtual void render(bool top = true);
     virtual void onEvent(StackuiEvent &e);
 };
 

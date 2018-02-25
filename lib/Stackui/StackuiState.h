@@ -50,7 +50,7 @@ class StackuiState
 
     virtual void onEvent(StackuiEvent &e) {}
     virtual void onFrame(unsigned long ms) {}
-    virtual void render() {}
+    virtual void render(bool top = true) {}
 
   protected:
     void pushState(StackuiState* newState);
@@ -58,7 +58,9 @@ class StackuiState
     void popState();
 
     void renderProps(StackuiProps &props);
+
     void passEvent(StackuiEvent &e);
+    void passRender();
     StackuiModel* getStackuiModel();
 
   private:
