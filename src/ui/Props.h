@@ -51,7 +51,7 @@ class PropsRouteSelector: public StackuiProps
 class PropsRouteLetter: public StackuiProps
 {
   public:
-    static const int id = 3;
+    static const int id = 4;
     virtual int getId() { return PropsRouteLetter::id; }
     char letter;
 };
@@ -59,7 +59,7 @@ class PropsRouteLetter: public StackuiProps
 class PropsBlendLeds: public StackuiProps
 {
   public:
-    static const int id = 4;
+    static const int id = 5;
     virtual int getId() { return PropsBlendLeds::id; }
     float drySend;
     float wetSend;

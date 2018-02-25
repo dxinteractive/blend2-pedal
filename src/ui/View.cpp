@@ -24,9 +24,8 @@ static int BLEND_BOX_PADDINGX = 5;
 static int BLEND_BOX_GRAPHH = 10;
 static int BLEND_GRAPHW = 20;
 
-static char const* SHUFFLER_SELECTOR_LETTERS = "ABCD--";
+static char const* SHUFFLER_SELECTOR_LETTERS = "ABCD..";
 static char NC = ' ';
-static char GAP = '-';
 
 void View::setup()
 {
@@ -151,7 +150,7 @@ void View::render(PropsRouteSelector &props)
   screen.clearDisplay();
   screen.setTextColor(WHITE);
 
-  renderGraphic(10, 10, props);
+  renderGraphic(0, 0, props);
 
   screen.setTextSize(1);
   screen.setCursor(0, 56);
@@ -166,8 +165,8 @@ void View::render(PropsRouteSelector &props)
 
 void View::renderGraphic(int x, int y, PropsRouteSelector &props)
 {
-  char upper[] = {NC,NC,NC,NC,NC,NC,NC,NC,NC,NC};
-  char lower[] = {NC,NC,NC,NC,NC,NC,NC,NC,NC,NC};
+  char upper[] = {NC,NC,NC,NC,NC,NC,NC,NC,NC,NC,NC,NC};
+  char lower[] = {NC,NC,NC,NC,NC,NC,NC,NC,NC,NC,NC,NC};
   int upperCursor = 2;
 
   // get prop data
@@ -193,11 +192,11 @@ void View::renderGraphic(int x, int y, PropsRouteSelector &props)
 
   // add lower cursor and split icon at split position
   int lowerCursor = splitPos + 1;
-  lower[splitPos] = '/';
+  lower[splitPos] = ((selector0Z || selector1Z) && props.zPosition == 3) ? '^' : '/';
 
   // add selectors to upper
-  upper[upperCursor++] = selector0Z ? GAP : SHUFFLER_SELECTOR_LETTERS[selectors[0]];
-  upper[upperCursor++] = selector1Z ? GAP : SHUFFLER_SELECTOR_LETTERS[selectors[1]];
+  upper[upperCursor++] = selector0Z ? 'Z' : SHUFFLER_SELECTOR_LETTERS[selectors[0]];
+  upper[upperCursor++] = selector1Z ? 'Z' : SHUFFLER_SELECTOR_LETTERS[selectors[1]];
   upper[upperCursor++] = SHUFFLER_SELECTOR_LETTERS[selectors[2]];
   upper[upperCursor++] = SHUFFLER_SELECTOR_LETTERS[selectors[3]];
 
@@ -214,14 +213,18 @@ void View::renderGraphic(int x, int y, PropsRouteSelector &props)
       lower[lowerCursor++] = SHUFFLER_SELECTOR_LETTERS[selectors[1]];
   }
 
-  if(props.zPosition == 3) // DMM z loop
+  int dmmCursor = -1;
+
+  if((selector0Z || selector1Z) && props.zPosition == 3) // DMM z loop
   {
-    int dmmCursor = splitPos;
+    dmmCursor = splitPos;
     if(selector1Z)
       lower[--dmmCursor] = SHUFFLER_SELECTOR_LETTERS[selectors[1]];
 
     if(selector0Z)
       lower[--dmmCursor] = SHUFFLER_SELECTOR_LETTERS[selectors[0]];
+
+    lower[--dmmCursor] = ')';
   }
 
   // find join position
@@ -231,15 +234,14 @@ void View::renderGraphic(int x, int y, PropsRouteSelector &props)
   for(int i = splitPos; i < lowerCursor; i++)
   {
     if(upper[i] == NC && lower[i] != NC)
-      upper[i] = GAP;
+      upper[i] = '.';
 
     if(upper[i] != NC && lower[i] == NC)
-      lower[i] = GAP;
+      lower[i] = '.';
   }
 
-  // add joiners
-  upper[lowerCursor] = '/';
-  lower[lowerCursor++] = '-';
+  // add joiner
+  lower[lowerCursor++] = ':';
 
   if(props.zPosition == 2) // After z loop
   {
@@ -254,35 +256,94 @@ void View::renderGraphic(int x, int y, PropsRouteSelector &props)
   if(props.dryPosition == 1)
     lower[lowerCursor++] = 'E';
 
+  Serial.println(lowerCursor);
+
   // add output switch
   if(outputSwitch == 0)
-  {
     lower[lowerCursor++] = 'F';
+
+  // offset for centering
+  int cols = 0;
+  for(int i = 0; i < 12; i++)
+  {
+    if(upper[i] != NC || lower[i] != NC)
+      cols++;
   }
 
   // render
-  int xx = 110;
-  for(int i = 0; i < 10; i++)
+  int xx = 116 - ((128 - (cols * 12)) * 0.5);
+
+  for(int i = 0; i < 12; i++)
   {
     if(upper[i] != NC || lower[i] != NC)
     {
-      screen.setTextSize(2);
-      screen.setCursor(xx, 10);
-      screen.println(upper[i]);
-      screen.setCursor(xx, 30);
-      screen.println(lower[i]);
-      xx -= 14;
+      PropsRouteLetter pUpper;
+      pUpper.letter = upper[i];
+      renderGraphic(xx, 7, pUpper);
+
+      PropsRouteLetter pLower;
+      pLower.letter = lower[i];
+      renderGraphic(xx, 27, pLower);
+
+      if(dmmCursor > -1 && i > dmmCursor && i < splitPos)
+      {
+        for(int j = 0; j < 12; j += 2)
+          screen.drawPixel(xx + j, 24, WHITE);
+      }
+
+      xx -= 12;
     }
   }
 }
 
 void View::renderGraphic(int x, int y, PropsRouteLetter &props)
 {
-  screen.setCursor(x, y);
-  screen.setTextSize(2);
-  screen.println(props.letter);
-}
+  if(props.letter == '.' || props.letter == ':' || props.letter == 'Z')
+  {
+    for(int i = 0; i < 6; i++)
+      screen.drawPixel(x + i * 2, y + 6, WHITE);
 
+    if(props.letter == ':')
+    {
+      screen.drawPixel(x + 10, y - 14, WHITE);
+      screen.drawPixel(x + 8, y - 12, WHITE);
+      screen.drawPixel(x + 6, y - 10, WHITE);
+      for(int i = -8; i < 6; i += 2)
+        screen.drawPixel(x + 4, y + i, WHITE);
+    }
+
+    if(props.letter == 'Z')
+    {
+      screen.setCursor(x + 3, y - 3);
+      screen.setTextSize(1);
+      screen.print('z');
+    }
+  } else if(props.letter == '/' || props.letter == '^') {
+    screen.drawPixel(x, y + 6, WHITE);
+    screen.drawPixel(x + 2, y + 4, WHITE);
+    for(int i = -4; i < 4; i += 2)
+      screen.drawPixel(x + 4, y + i, WHITE);
+
+    if(props.letter == '^') {
+      screen.drawPixel(x + 8, y - 4, WHITE);
+      screen.drawPixel(x + 10, y - 3, WHITE);
+      screen.drawPixel(x + 10, y + 6, WHITE);
+      screen.drawPixel(x + 8, y + 4, WHITE);
+      for(int i = -4; i < 4; i += 2)
+        screen.drawPixel(x + 6, y + i, WHITE);
+    }
+  } else if(props.letter == ')') {
+    screen.drawPixel(x, y + 6, WHITE);
+    screen.drawPixel(x + 2, y + 4, WHITE);
+    screen.drawPixel(x + 2, y + 2, WHITE);
+    screen.drawPixel(x + 2, y, WHITE);
+    screen.drawPixel(x, y - 2, WHITE);
+  } else {
+    screen.setTextSize(2);
+    screen.setCursor(x, y);
+    screen.println(props.letter);
+  }
+}
 void View::render(PropsBlendLeds &props)
 {
   ledController.setBrightness(LED_UP, props.wetSend);
