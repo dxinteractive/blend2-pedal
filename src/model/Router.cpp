@@ -4,6 +4,7 @@
 void Router::setup()
 {
   relayController.setup();
+  setDryPosition(RelayController::DRY_POSITION_LINEAR);
 }
 
 int Router::setZPosition(int newZPosition)
